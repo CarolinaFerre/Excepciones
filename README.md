@@ -1,6 +1,7 @@
 # ejercicios-de-excepciones
 
 1. Excepciones.
+
 A lo largo de nuestro aprendizaje de Java nos hemos topado en alguna ocasión con errores errores, pero éstos suelen ser los que nos ha indicado el
 compilador. Un punto y coma por aquí, un nombre de variable incorrecto por allá, pueden hacer que nuestro compilador nos avise de estos
 descuidos. Cuando los vemos, se corrigen y obtenemos nuestra clase compilada correctamente.
@@ -28,11 +29,11 @@ El programador también puede lanzar sus propias excepciones. Las excepciones en
 Exception. Existe toda una jerarquía de clases derivada de la clase base Exception. Estas clases derivadas se ubican en dos grupos principales:
 Las excepciones en tiempo de ejecución, que ocurren cuando el programador no ha tenido cuidado al escribir su código.
 Las excepciones que indican que ha sucedido algo inesperado o fuera de control.
-En la siguiente imagen te ofrecemos una aproximación a la jerarquía de las excepciones en Java.
-31/1/21 21:05
-Página 3 de 9Imagen procedente de curso de Programación del MECD
-31/1/21 21:05
-Página 4 de 91.1. Capturar una excepción.
+
+
+
+2.Capturar una excepción.
+
 Para poder capturar excepciones, emplearemos la estructura de captura de excepciones try-catch-finally.
 Básicamente, para capturar una excepción lo que haremos será declarar bloques de código donde es posible que ocurra una excepción. Esto lo
 haremos mediante un bloque try (intentar). Si ocurre una excepción dentro de estos bloques, se lanza una excepción. Estas excepciones
@@ -50,18 +51,32 @@ Ejercicio resuelto
 Realiza un programa en Java en el que se solicite al usuario la introducción de un número por teclado comprendido entre el 0 Realiza un programa en Java en el que se solicite al usuario la introducción de un número por teclado comprendido entre el 0
 y el 100. Utilizando manejo de excepciones, debes controlar la entrada de dicho número y volver a solicitarlo en caso de que y el 100. Utilizando manejo de excepciones, debes controlar la entrada de dicho número y volver a solicitarlo en caso de que
 ésta sea incorrecta. ésta sea incorrecta.
-Solución: Solución:
+
+Solución:
+
 try {
+
 código que puede generar excepciones;
+
 } catch (Tipo_excepcion_1 objeto_excepcion) {
+
 Manejo de excepción de Tipo_excepcion_1;
+
 } catch (Tipo_excepcion_2 objeto_excepcion) {
+
 Manejo de excepción de Tipo_excepcion_2;
+
 }
+
 ...
+
 finally {
+
 instrucciones que se ejecutan siempre
+
 }
+
+
 /*
  * Ejercicio resuelto sobre manejo de excepciones.
  * El programa solicita que el usuario introduzca por teclado
@@ -69,6 +84,7 @@ instrucciones que se ejecutan siempre
  * por medio de excepciones.
  */
 import java.io.*;
+
 
 Se han utilizado estructuras try-catch-finally. En este programa se solicita repetidamente un número utilizando una estructura do-while,
 mientras el número introducido sea menor que 0 y mayor que 100. Como al solicitar el número pueden producirse los errores siguientes:
@@ -82,27 +98,44 @@ public class ejercicio_resuelto_excepciones {
  
  BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
  
+ 
  do{
+ 
  try{
+ 
  System.out.print("Introduzca un número entre 0 y 100: ");
+ 
  linea = teclado.readLine();
+ 
  numero = Integer.parseInt(linea);
  
+ 
  }catch(IOException e){
+ 
  System.out.println("Error al leer del teclado.");
  
+ 
  }catch(NumberFormatException e){
+ 
  System.out.println("Debe introducir un número entre 0 y 100.");
  
+ 
  }finally{
+ 
  intentos++;
+ 
  }
+ 
  }while (numero < 0 || numero > 100);
  
+ 
  System.out.println("El número introducido es: " + numero);
+ 
  System.out.println("Número de intentos: " + intentos);
  
+ 
  }
+ 
 }
 
 
@@ -121,6 +154,7 @@ de localizar dónde se han producido errores. ¿Verdadero o Falso? de localizar 
 
 
 El manejo de excepciones.
+
 Como hemos comentado, siempre debemos controlar las excepciones que se puedan producir o de lo contrario nuestro software quedará
 expuesto a fallos. Las excepciones pueden tratarse de dos formas:
 Interrupción. Interrupción. En este caso se asume que el programa ha encontrado un error irrecuperable. La operación que dio lugar a la excepción se
@@ -132,8 +166,10 @@ En este ejemplo, a través de la función de generación de números aleatorios 
 posición del array que contiene cinco cadenas de caracteres. Este acceso, a veces puede generar un error del tipo
 ArrayIndexOutOfBoundsException, que debemos gestionar a través de un catch. Al estar el bloque catch dentro de un while, se seguirá
 intentando el acceso hasta que no haya error.
-31/1/21 21:05
-Página 8 de 91.3. Delegación de excepciones con throws.
+
+
+Delegación de excepciones con throws.
+
 ¿Puede haber problemas con las excepciones al usar llamadas a métodos en nuestros programas? Efectivamente, si se produjese una excepción
 es necesario saber quién será el encargado de solucionarla. Puede ser que sea el propio método llamado o el código que hizo la llamada a dicho
 método.
@@ -152,10 +188,18 @@ Si deseas saber algo más sobre la delegación de excepciones, te proponemos el 
 Excepciones y delegación de éstas.
 Además te volvemos a remitir al vídeo demostrativo sobre manejo de excepciones en Java que se incluyó en el epígrafe anterior, titulado
 "capturar una excepción".
+
+
 public class delegacion_excepciones {
+
  ...
+ 
  public int leeaño(BufferedReader lector) throws IOException, NumberFormatException{
+ 
  String linea = teclado.readLine();
+ 
  Return Integer.parseInt(linea);
+ 
  }
+ 
  ..
