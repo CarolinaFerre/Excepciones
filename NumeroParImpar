@@ -1,0 +1,39 @@
+/*Crea un programa que pida al usuario introducir un número desde una ventana 
+JOptionPane. El programa debe devolver un mensaje también en un JOptionPane 
+especificando si el número introducido por el usuario es par o impar.
+/*Además, el programa debe controlar la excepción si el usuario introduce texto en lugar de 
+un valor numérico en la ventana JOptionPane. En caso de introducir texto, se debe advertir 
+al usuario que “El valor introducido no es numérico. El programa se cerrará”, terminando la 
+ejecución del programa sin hacer nada más.*/
+
+
+package excepciones;
+import javax.swing.JOptionPane;
+
+public class NumeroParImpar {
+static String numero;
+static int numero1;
+static String resultadopar;
+static String resultadoimpar;
+
+	public static void numeroParoImpar(String numero) {
+		numero1=Integer.parseInt(numero);
+		if(numero1%2==0) {
+			JOptionPane.showMessageDialog(null,"El número "+numero1+" es par");
+		}else {
+			JOptionPane.showMessageDialog(null, "El número "+numero1+" es impar");
+		}
+		
+	}
+
+	public static void main(String[] args) throws NumberFormatException{
+		try {
+		numero=JOptionPane.showInputDialog("Introduzca un número");
+		NumeroParImpar.numeroParoImpar(numero);
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "No ha introducido datos numéricos");
+		}
+		
+	}
+
+}
