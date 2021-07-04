@@ -1,0 +1,86 @@
+/*4.Crear la clase NumerosPescaderia que permita controlar un contador de números de clientes esperando por atender en la pescaderia. En el constructor se debe indicar un número máximo de clientes a atender. Dispondrá con dos métodos: cogerNumero()  y dejarNumero(). El método cogerNumero()  da “la vez” o el turno a nuevo cliente o eleva una excepción en caso de haber alcanzado el límite máximo. En este caso generará una excepción de la clase EstoySaturaoExcepción.
+El método dejarNumero() decrementará el contador de clientes y que representa cuando un cliente ha sido atendido.
+ Realizar un clase con un método main que pruebe la clase diseñada y que trate la excepción.*/
+
+
+package excepciones;
+import java.util.Scanner;
+
+public class maxClientesException extends Exception{
+
+	public maxClientesException(int num) {
+		super("Aforo lleno");
+	}
+
+}
+
+
+
+public class Pescaderia {
+	static Scanner sc=new Scanner(System.in);
+public static  int maxClientes;
+public int contadorClientes;
+static int opcion;
+
+	public Pescaderia(int maxClientes) {
+		this.maxClientes=maxClientes;
+		this.contadorClientes=0;
+	}
+	public void MaxClientes() {
+		System.out.println("El aforo de clientes de la pescaderia es= "+this.maxClientes);
+	}
+	public void cogerNumero() throws maxClientesException{
+		if(opcion==1) {
+			contadorClientes++;
+			System.out.println("El número de clientes esperando es= "+contadorClientes);
+		}
+		if(contadorClientes==maxClientes) {
+			
+				throw new maxClientesException(contadorClientes);
+				
+			}
+			
+	}
+
+		
+	
+	public void dejarNumero() {
+		contadorClientes--;
+		System.out.println("El número de clientes esperando es= "+contadorClientes);
+	}
+	public static void main(String[] args) {
+		
+		Pescaderia pescaderia=new Pescaderia(5);
+		int contador=5;
+		
+		System.out.println("Bienvenido a la pescadería");
+		System.out.println("Seleccione lo que quiere hacer");
+		System.out.println("1.Coger turno para comprar");
+		System.out.println("2.Dejar turno porque ya ha sido atendido");
+		for(int i=0;i<10;i++) {
+			opcion=sc.nextInt();
+			
+			switch(opcion) {
+				case 1:
+				try {
+					pescaderia.cogerNumero();
+				} catch (maxClientesException e) {
+				
+					System.out.println("Aforo lleno");;
+				}
+				
+				break;
+				case 2:
+					pescaderia.dejarNumero();
+					System.out.println("Gracias por su visita");
+					
+					break;
+				default:
+					System.out.println("Opción no válida");
+					
+			
+			}
+		}
+	}
+
+}
