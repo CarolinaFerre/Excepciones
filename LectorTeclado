@@ -1,0 +1,112 @@
+/*Realizar una clase de nombre LectorTeclado, que lea datos de teclado.
+ * La clase tiene los métodos:leeTexto(nombre de usuario),leeEntero(edad usuario),leeBoolean(casado o no casado) 
+ * que solicitarán a un usuario un dato
+ * de sus correspondientes tipos, mostrando un mensaje que reciben como argumento.
+ * Si se prouce un error en la conversión de los datos leídos por teclado salta la excepción.
+ */
+ /* ***************************************************************
+
+package excepciones;
+
+public class NoBoleans extends Exception {
+
+	public NoBoleans() {
+		super("No ha ingresado booleanos");
+	}
+
+}
+
+/* *************************************************************
+
+package excepciones;
+
+import javax.swing.JOptionPane;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import java.io.IOException;
+
+public class LectorTeclado {
+
+
+static Scanner sc=new Scanner(System.in);
+static int contador=0;
+private static String nombre;
+private static String edad;
+private static String casado;
+static boolean estadocivil;
+public static int edadint;
+static boolean texto;
+	public LectorTeclado(String nombre,String edad,String casado) {
+		this.nombre=nombre;
+		this.edad=edad;
+		this.casado=casado;
+	}
+
+	public void getNombre() throws IOException {
+		//verificar si nombre es String
+		if (nombre.matches("^[A-Za-z ]*$")) {
+            System.out.println("Informacion valida");
+            texto = true;
+            System.out.println("El dato introducido es= "+this.nombre);
+        } else {
+            
+            texto = false; {
+			throw new IOException();
+			
+            }
+        }
+	}
+	
+	public static void isNumeric(int edadint2) throws NumberFormatException{
+		
+		try {
+			Integer.parseInt(edad);
+			System.out.println("El dato introducido es= "+edad+" años");
+		}catch(NumberFormatException exc) {
+			System.out.println("No ha ingresado números");
+		}
+	}
+
+	public void isCasado() throws NoBoleans{
+		//valida si el usuario introduce true o false y si es que si lo pasa a boolean, si es que no salta la excepción
+		if(("true".equals(casado)||("false".equals(casado)))) {
+			estadocivil=Boolean.valueOf(casado);
+			System.out.println("El dato introducido con respecto si está casado/a es=  "+estadocivil);
+		}else {
+			throw new NoBoleans();
+		
+		}
+	}
+
+	public static void main(String[] args) throws IOException,NumberFormatException {
+		
+		LectorTeclado datosTeclado=new LectorTeclado(nombre,edad,casado);
+		while(contador!=2) {
+			
+			//Se pregunta por el nombre:
+			nombre=JOptionPane.showInputDialog("Introduzca su nombre");
+			
+			//Excepción en caso de que se teclee un int en vez de un caracter en nombre
+			try {
+			datosTeclado.getNombre();
+			}catch (IOException exc) {
+				System.out.println("No ha ingresado caracteres");
+			}
+			//Se pregunta por la edad
+			edad=JOptionPane.showInputDialog("Introduzca una edad");
+			
+			LectorTeclado.isNumeric(edadint);
+			
+			//Se pregunta si está casado o no
+			casado=JOptionPane.showInputDialog("Introduzca si está casado o no [true en caso que si y false en caso que no]");
+			contador++;
+			try {
+			datosTeclado.isCasado();
+			}catch(NoBoleans exc) {
+			
+				System.out.println("No ha ingresado boleanos");
+				}
+			}
+		}
+	}
+	
