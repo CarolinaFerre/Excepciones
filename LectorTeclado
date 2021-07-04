@@ -43,7 +43,7 @@ static boolean texto;
 	}
 
 	public void getNombre() throws IOException {
-		//verificar si nombre es String
+		//verificar si nombre es String con matches 
 		if (nombre.matches("^[A-Za-z ]*$")) {
             System.out.println("Informacion valida");
             texto = true;
@@ -58,7 +58,7 @@ static boolean texto;
 	}
 	
 	public static void isNumeric(int edadint2) throws NumberFormatException{
-		
+		//pasar de String a int con parseInt y si el dato introducido no es número salta la excepción
 		try {
 			Integer.parseInt(edad);
 			System.out.println("El dato introducido es= "+edad+" años");
@@ -68,7 +68,7 @@ static boolean texto;
 	}
 
 	public void isCasado() throws NoBoleans{
-		//valida si el usuario introduce true o false y si es que si lo pasa a boolean, si es que no salta la excepción
+		//valida si el usuario introduce true o false con equals y si es que si lo pasa a boolean, si es que no salta la excepción
 		if(("true".equals(casado)||("false".equals(casado)))) {
 			estadocivil=Boolean.valueOf(casado);
 			System.out.println("El dato introducido con respecto si está casado/a es=  "+estadocivil);
