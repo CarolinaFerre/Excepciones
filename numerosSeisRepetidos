@@ -1,0 +1,43 @@
+/*Realizar un programa que genere sin parar números aleatorios entre 1 y 10, y que lance una excepción del programador denominada DevilException*/
+/*cuando ha aparecido tres veces sucesivas el número 6.*/
+
+package excepciones;
+import java.lang.Math;
+
+
+public class DevilException extends Exception {
+	public DevilException() {
+		super("666");
+	}
+}
+
+public class repeticiondeSeis {
+	static int contador=10;
+	static int contador666=0;
+	public static void seisRepetidas() throws DevilException {
+		for (int i=0;i<=contador;i++) {
+			int numeros=(int)Math.floor(Math.random()*20);
+			System.out.println(numeros);
+			if(numeros==6) {
+				contador666++;
+				if ( contador666 == 2){
+	                   throw new DevilException();
+	                }
+	             }
+	           else {
+	               contador666 = 0;
+	            }      
+
+			}
+		}
+	
+	public static void main(String[] args) {
+		try {
+			seisRepetidas();
+		}catch(DevilException e) {
+			System.out.println("Ha puesto tres veces el número 6");
+		}
+
+	}
+
+}
