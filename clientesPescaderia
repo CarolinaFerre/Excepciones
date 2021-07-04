@@ -1,6 +1,18 @@
 /*4.Crear la clase NumerosPescaderia que permita controlar un contador de números de clientes esperando por atender en la pescaderia. En el constructor se debe indicar un número máximo de clientes a atender. Dispondrá con dos métodos: cogerNumero()  y dejarNumero(). El método cogerNumero()  da “la vez” o el turno a nuevo cliente o eleva una excepción en caso de haber alcanzado el límite máximo. En este caso generará una excepción de la clase EstoySaturaoExcepción.
 El método dejarNumero() decrementará el contador de clientes y que representa cuando un cliente ha sido atendido.
  Realizar un clase con un método main que pruebe la clase diseñada y que trate la excepción.*/
+/* ****************************************************************
+package excepciones;
+
+public class maxClientesException extends Exception{
+
+	public maxClientesException(int num) {
+		super("Aforo lleno");
+	}
+
+}
+
+/* ****************************************************************
 
 
 package excepciones;
