@@ -1,6 +1,16 @@
 /*Realizar un programa que genere sin parar números aleatorios entre 1 y 10, y que lance una excepción del programador denominada DevilException*/
 /*cuando ha aparecido tres veces sucesivas el número 6.*/
 
+/* *****************************************************
+package excepciones;
+
+public class DevilException extends Exception {
+	public DevilException() {
+		super("666");
+	}
+}
+/* *****************************************************
+
 package excepciones;
 import java.lang.Math;
 
