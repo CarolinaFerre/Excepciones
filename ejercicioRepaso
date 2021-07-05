@@ -1,0 +1,89 @@
+
+/*Realizar un programa que realice las siguientes tareas:
+ * Solicita al usuario un número entero mayor de 10 y menor de 30;
+ * Investiga y muestra al usuario si el número es divisble por 5
+ * Solicita al usuario su nombre e informa posteriormente de:
+ * El número de caracteres del nombre
+ * El carácter inicial y final
+ * Muestra el nombre con todos los caracteres en mayúsculas
+ * Muestra el nombre con todos los caracteres en minúsculas
+ * Indica al usuario si el nombre tiene la letra a,A
+ */
+
+
+
+package excepciones;
+import javax.swing.JOptionPane;
+public class ejercicioRepaso {
+static String numero;
+static int numero1;
+static String nombre;
+static String mayuscula;
+static String minuscula;
+
+	public static void Numero(String numero) throws NumberFormatException,FueraDeFranja{
+		numero1=Integer.parseInt(numero);
+			if((numero1>=10)&(numero1<=30)){
+				JOptionPane.showMessageDialog(null,"El número seleccionado está dentro de la franja permitida y es= "+numero1);
+			}else {
+				throw new FueraDeFranja();
+			}
+	}
+	public static void Divisible5(int numero1) {
+		if(numero1%5==0) {
+			JOptionPane.showMessageDialog(null,"El número "+numero1+" es divisible entre 5");
+		}else {
+			JOptionPane.showMessageDialog(null,"El número "+numero1+" no es divisible entre 5");
+		}
+	}
+	public static void Caracteres(String nombre) throws errorCaracteres, sinA {
+			if(nombre.matches("^[A-Za-z ]*$")) {
+				JOptionPane.showMessageDialog(null, "El nombre "+nombre+ " empieza por la letra "+nombre.charAt(0));
+				JOptionPane.showMessageDialog(null, "El nombre "+nombre+ " termina por la letra "+nombre.charAt(nombre.length()-1));
+				if((nombre.contains("a"))||(nombre.contains("A"))) {
+					JOptionPane.showMessageDialog(null,"El nombre introducido contiene a");
+				}else {
+					throw new sinA();
+				}
+			}else {
+				throw new errorCaracteres();
+			}
+	
+	}
+	
+	public static void main(String[] args) throws NumberFormatException, FueraDeFranja,errorCaracteres{
+		//Pide en consola número mayor que 10 y menor que 30 y dice si es numérico o no
+		try {
+		numero=JOptionPane.showInputDialog("Teclea un número mayor de 10 y menor de 30:");
+		ejercicioRepaso.Numero(numero);
+		}catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null,"Los datos introducidos no son numéricos");
+			System.exit(0);
+		}catch(FueraDeFranja exc) {
+			JOptionPane.showMessageDialog(null,"El número introducido está fuea de franja");
+		}
+		//Dice si es divisible entre 5 el número
+		ejercicioRepaso.Divisible5(numero1);
+		try {
+		
+		nombre=JOptionPane.showInputDialog("Teclea un nombre");
+		try {
+			ejercicioRepaso.Caracteres(nombre);
+		}catch(sinA e) {
+			
+			JOptionPane.showMessageDialog(null, "El nombre introducido no contiene a");
+		}
+		}catch(errorCaracteres exc) {
+			JOptionPane.showMessageDialog(null, "Los datos introducidos no son caracteres");
+			}
+		
+		//Pone en mayúsculas y minúsculas el nombre
+		JOptionPane.showMessageDialog(null, nombre.toLowerCase() );
+		JOptionPane.showMessageDialog(null, nombre.toUpperCase() );
+		
+		//Muestra el tamaño del nombre
+		JOptionPane.showMessageDialog(null, "El tamaño de este caracter es= "+nombre.length() );
+		}
+		
+	}
+
