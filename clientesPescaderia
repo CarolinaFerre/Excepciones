@@ -2,15 +2,15 @@
 El método dejarNumero() decrementará el contador de clientes y que representa cuando un cliente ha sido atendido.
  Realizar un clase con un método main que pruebe la clase diseñada y que trate la excepción.*/
 /* ****************************************************************
-package excepciones;
+/* package excepciones;
 
-public class maxClientesException extends Exception{
+/* public class maxClientesException extends Exception{
 
-	public maxClientesException(int num) {
-		super("Aforo lleno");
-	}
+/*	public maxClientesException(int num) {
+/*		super("Aforo lleno");
+/*	}
 
-}
+/* }
 
 /* ****************************************************************
 
