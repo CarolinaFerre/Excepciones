@@ -6,15 +6,15 @@
  */
  /* ***************************************************************
 
-package excepciones;
+/* package excepciones;
 
-public class NoBoleans extends Exception {
+/* public class NoBoleans extends Exception {
 
-	public NoBoleans() {
-		super("No ha ingresado booleanos");
-	}
+/*	public NoBoleans() {
+/*		super("No ha ingresado booleanos");
+/*	}
 
-}
+/* }
 
 /* *************************************************************
 
