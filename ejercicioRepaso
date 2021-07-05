@@ -11,6 +11,27 @@
  */
 
 
+/* ******************************************************
+/* package excepciones;
+
+/* public class sinA extends Exception {
+/*	public sinA() {
+/*		super("Error");
+/*	}
+/* }
+/********************************************************
+
+
+/* ******************************************************
+/* package excepciones;
+
+/* public class errorCaracteres extends Exception {
+/*	public errorCaracteres() {
+/*		super("error");
+/*	}
+/* }
+
+/********************************************************
 
 package excepciones;
 import javax.swing.JOptionPane;
@@ -86,4 +107,3 @@ static String minuscula;
 		}
 		
 	}
-
