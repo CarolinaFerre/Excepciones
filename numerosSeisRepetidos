@@ -2,13 +2,13 @@
 /*cuando ha aparecido tres veces sucesivas el número 6.*/
 
 /* *****************************************************
-package excepciones;
+/* package excepciones;
 
-public class DevilException extends Exception {
-	public DevilException() {
-		super("666");
-	}
-}
+/* public class DevilException extends Exception {
+/*	public DevilException() {
+/*		super("666");
+/*	}
+/* }
 /* *****************************************************
 
 package excepciones;
