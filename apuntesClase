@@ -1,14 +1,23 @@
 Tema 8 – Excepciones
+
 • Introducción
 ● Gestión de excepciones
 ● Lanzamiento y declaración de
 excepciones
 ● Creación de excepciones propias
 ● Bloque finally
+
+
+
+
+
+
 Introducción
+
 ● En todo programa se producen errores
 – Errores en tiempo de compilación
 – Errores en tiempo de ejecución
+
 ● Situación ideal: poder detectar todos los
 errores en tiempo de compilación
 – Esto no es posible: no todos los errores se
@@ -16,6 +25,7 @@ pueden detectar en tiempo de compilación
 (p.e. dividir por una variable cuyo valor es 0
 en algunos casos)
 Introducción
+
 ● Errores en tiempo de compilación
 – Léxicos
  String literal is not properly closed by a double-quote
@@ -24,11 +34,13 @@ Introducción
 private String cadena = “hola;
 private numero int = 0;
 Introducción
+
 ● Errores en tiempo de compilación
 – Semánticos
  Type mismatch: cannot convert from Integer to String
 private String cadena = new Integer(5);
 Introducción
+
 ● Errores en tiempo de ejecución
 – Recuperables
 • Se pueden detectar y se deben tratar
@@ -42,23 +54,30 @@ actuar.
 • Son errores graves, que suelen finalizar la ejecución
 del programa
 Introducción
+
 ● ¿Qué hacer ante un error en tiempo de
 ejecución?
 – ¿Ignorarlo?, ¿terminar la ejecución?,
 ¿hacer algo? ¿mostrar un error al usuario?
+
 ● Es necesario poder manejar los errores
 que se producen en tiempo de ejecución
 Introducción
+
 ● Los errores en tiempo de ejecución en Java
 se denominan excepciones (exceptions)
+
 ● Cuando se produce una excepción, se
 interrumpe la ejecución secuencial de las
 sentencias
+
 ● No se ejecuta la sentencia posterior a
 aquella en la que se produce la excepción
+
 ● Por defecto se muestra por pantalla ( salida
 estándar de errores) un informe del error
 producido.
+
 public class Prueba {
  public static void main(String[] args) {
  System.out.println("Sentencia 1");
@@ -76,52 +95,66 @@ Sentencia 2
 Exception in thread "main" java.lang.ArithmeticException: / by zero
 at Prueba.main(Prueba.java:10)
 Introducción
+
 ● Finalizar la ejecución del programa es una medida
 demasiado drástica cuando se produce una
 excepción.
+
 ● Es necesario poder ejecutar cierto código cuando se
 produzca una excepción.
 – Informar al usuario con un cuadro de diálogo (Timeout,
 fichero inexistente)
 – Hacer log (registro) del error
 – Realizar otra operación alternativa
+
 ● Ejecutar código ante una excepción se denomina
 capturar, manejar o gestionar la excepción
-Tema 8 – Excepciones
-● Introducción
-• Gestión de excepciones
-● Lanzamiento y declaración de
-excepciones
-● Creación de excepciones propias
-● Bloque finally
+
+
+
+
+
+
+
+
 Gestión de Excepciones
+
 ● Siempre que se produce una excepción,
 se crea un objeto que mantiene
 información sobre el error producido.
+
 ● Dependiendo del error, se creará un
 objeto de una clase determinada.
+
 ● Usando métodos de los objetos
 excepción podremos conocer detalles del
 error producido.
 Gestión de excepciones
+
 • java.lang.Throwable: Clase padre de
 todas las excepciones
+
 • java.lang.Error: problemas serios que
 normalmente no se debería intentar manejar
 (Error de la máquina virtual,…)
+
 • java.lang.Exception:
 – Excepciones que indican problemas
 razonables que son recuperables
+
 ● Fallo en la red (no hay conexión con
 el servidor)
+
 ● Fallo de acceso a disco (se saca la
 llave USB)
+
 ● Fallo de formato de los datos …
 – Normalmente deben ser
 capturadas
 Throwable
 Error Exception
 Gestión de excepciones
+
 ● Jerarquía de herencia de excepciones 
 Gestión de excepciones
 java.lang.Object
@@ -130,24 +163,32 @@ java.lang.Object
  java.lang.RuntimeException
  java.lang.IllegalArgumentException
  java.lang.NumberFormatException
+ 
 ● Ejemplo de Exception
 – Se produce cuando se intenta convertir una
 cadena a entero y no corresponde a un entero
 Gestión de excepciones
+
 ● Algunos métodos de la clase base Throwable:
 – public String getMessage()
+
 • Devuelve un mensaje que informa de la excepción
 – public void printStackTrace()
+
 • Imprime los métodos que estaban en la pila de ejecución
 cuando se produjo la excepción por la salida estándar
+
 • Incluye la línea donde se produce la excepción
+
 • Es el comportamiento por defecto cuando no se maneja la
 excepción.
 Gestión de excepciones
+
 ● Para gestionar una excepción hay que indicar el
 bloque de código donde es posible que se
 produzca una excepción
 – Bloque try
+
 ● Hay que indicar que sentencias ejecutar en caso de
 que en ese código se produzca una excepción
 – Se puede especificar la excepción que queremos
@@ -199,10 +240,14 @@ public class Divisor {
  }
  }
 }
+
+
 Dependiendo
 del error, se
 ejecuta un
 código u otro
+
+
 Gestión de excepciones
 public class Divisor2 {
  public static void main(String[] args) {
@@ -221,6 +266,8 @@ public class Divisor2 {
  return num / den;
  }
 }
+
+
 Las excepciones se
 propagan a través de
 las llamadas a métodos
@@ -231,7 +278,9 @@ fuera del método
 Puede haber varios
 métodos entre la
 excepción y su captura
+
 Gestión de excepciones
+
 ● Se pueden poner clases padre en los bloques
 catch
 – Se pueden agrupar varias excepciones en un único
@@ -261,24 +310,30 @@ ejecuta este manejador
 porque ArithmeticException
 y NumberFormatException
 heredan de Exception
-Tema 8 – Excepciones
-● Introducción
-● Gestión de excepciones
-• Lanzamiento y declaración de excepciones
-● Creación de excepciones propias
-● Bloque finally
+
+
+
+
+
+
+
 Lanzamiento y declaración de
 excepciones
+
 ● El desarrollador puede generar o lanzar su
 propias excepciones cuando se producen
 condiciones inesperadas
+
 ● Se crea un objeto de una clase que herede de
 Exception y se lanza o eleva
+
 ● Se lanza con la sentencia throw
+
 ● Cuando se lanza una excepción se interrumpe
 el flujo de ejecución secuencial.
 Lanzamiento y declaración de
 excepciones
+
 try {
  int [] s1 = ...
  int [] s2 = ...
@@ -311,6 +366,7 @@ objeto
 anterior
 Lanzamiento y declaración de
 excepciones
+
 ● ¿Cómo sabemos las excepciones que se
 pueden producir en un método?
 – Manual de java: JavaDoc de los métodos
@@ -320,6 +376,7 @@ Integer.parseInt(String s)
 •NullPointerException
 •ClassCastException
 •ArithmeticException
+
 ● Existen dos tipos de excepciones
 – Excepciones que se pueden capturar o se pueden
 ignorar. Pero si ocurren y no se capturan provocan
@@ -332,6 +389,7 @@ Lanzamiento y declaración de
 excepciones
 Lanzamiento y declaración de
 excepciones
+
 ● Excepciones que se pueden capturar
 o se pueden ignorar
 – Son todas las clases hijas de
@@ -349,6 +407,7 @@ E x c e p t i o n
 R u n t i m e E x c e p t i o n
 Lanzamiento y declaración de
 excepciones
+
 ● Excepciones que no se pueden ignorar (hay
 que capturarlas o declararlas)
 – Cualquier excepción que no sea hija de
@@ -361,6 +420,8 @@ RuntimeException
 •ParseException
 Lanzamiento y declaración de
 excepciones
+
+
 ● Resumen
 – Se puede capturar una excepción proporcionando un
 manejador para ella (try / catch)
@@ -372,25 +433,30 @@ excepción (throws)
 • De forma directa creando la excepción (throw)
 • De forma indirecta a través de excepciones producidas en los
 métodos a los que se llama
-Tema 8 – Excepciones
-● Introducción
-● Gestión de excepciones
-● Lanzamiento y declaración de excepciones
-• Creación de excepciones propias
-● Bloque finally
-● Ventajas de las excepciones
+
+
+
+
+
+
+
 Creación de excepciones propias
+
 ● Siempre que se necesite lanzar una excepción, hay que
 buscar las existentes en la librería de Java
+
 ● Si no existe una clase que represente la excepción que
 se quiere lanzar, se debe crear una clase para la
 excepción
+
 ● El desarrollador debe elegir si la excepción debe heredar
 de RuntimeException (puede ser ignorada)
+
 ● Al constructor de Exception y RuntimeException se
 le puede pasar un mensaje con String que informe de
 la excepción
-Creación de excepciones propias
+
+
 ● Ejemplo de excepción propia
 – Únicamente crea el mensaje de la excepción
 public class ListFullException extends Exception {
@@ -399,27 +465,33 @@ public class ListFullException extends Exception {
  +maximoTamanno);
  }
 }
-Tema 8 – Excepciones
-● Introducción
-● Gestión de excepciones
-● Lanzamiento y declaración de excepciones
-● Creación de excepciones propias
-• Bloque finally
+
+
+
+
+
+
 Bloque finally
+
 ● Las excepciones hacen que los métodos
 finalicen su ejecución en el punto donde se
 produjo la excepción
+
 ● ¿Qué ocurre si un método abre un fichero y se
 produce una excepción antes de haberlo
 cerrado? Podemos capturarla y cerrar el
 fichero
+
 ● ¿Y si no queremos capturarla? ¿Si queremos
 elevarla al método que llama?
 Bloque finally
+
 ● El bloque finally es un bloque opcional al final de
 la sentencia try/catch
+
 ● Si existe el bloque finally, pueden quitarse todos
 los catch y no se captura la excepción
+
 try {
  <sentencias>
 } catch (Exception e) {
@@ -432,13 +504,21 @@ try {
 } finally {
  <sentencias>
 }
-Bloque finally
+
+
+
 ● El código del bloque finally se ejecuta
 SIEMPRE, se produzca o no alguna
 excepción
+
 ● Si se produce alguna excepción, el código del
 bloque finally se ejecuta se capture o no la
 excepción
+
 ● Es un bloque donde se cierran los ficheros, se
 cierran la conexión con la base de datos,
 sockets…
+
+
+
+
